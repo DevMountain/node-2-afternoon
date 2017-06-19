@@ -424,7 +424,7 @@ app.listen( port, () => { console.log(`Server listening on port ${port}.`); } );
 
 <br />
 
-<b> insert giphy here </b>
+<img src="https://github.com/DevMountain/node-chat/blob/solution/readme-assets/2g.gif" />
 
 ## Black Diamond
 
