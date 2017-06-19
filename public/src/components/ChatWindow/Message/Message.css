@@ -1,0 +1,48 @@
+.Message__container {
+  width: calc(100% - 20px);
+  height: 65px;
+  padding: 0 10px;
+  background: #fff;
+  border-radius: 3px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.Message__time {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 11px;
+  opacity: 0.5;
+}
+
+.Message__text {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+}
+
+.Message__edit {
+  position: absolute;
+  top: 5px;
+  right: 30px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.Message__delete {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.Message__input {
+  position: absolute;
+  bottom: 10px;
+  width: calc(98% + 4px);
+}
