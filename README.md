@@ -1,12 +1,10 @@
-# node-chat
-Node 1 - Afternoon
 <img src="https://devmounta.in/img/logowhiteblue.png" width="250" align="right">
 
 # Project Summary
 
 In this project, we will create a local node chat server. After building out the server, we'll use postman unit tests to make sure the API has been built out correctly and also use a pre-built front-end to interact with the API.
 
-<b> insert image here </b>
+<img src="https://github.com/DevMountain/node-chat/blob/solution/readme-assets/1.png" />
 
 ## Step 1
 
@@ -31,7 +29,7 @@ Using `npm` we can quickly create a `package.json` file. In your terminal, when 
 
 ### Solution
 
-<b> insert giphy here </b>
+<img src="https://github.com/DevMountain/node-chat/blob/solution/readme-assets/1g.gif" />
 
 ## Step 2
 
@@ -381,7 +379,7 @@ In this step, we will test the API endpoints using postman unit tests.
 
 ### Solution
 
-<b> insert img here </b>
+<img src="https://github.com/DevMountain/node-chat/blob/solution/readme-assets/2.png" />
 
 ## Step 8
 
