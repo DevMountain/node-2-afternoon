@@ -140,8 +140,8 @@ In this step, we will create a controller that will handle the logic to create, 
     * Should be able to assign a unique `id` to the message.
   * Read - Should be able to return the messages array.
   * Update - Should be able to update the `text` property of a message using the request body.
-    * Should be able to determine which message to update using an `id` query parameter.
-  * Delete - Should be able to delete a message using an `id` query parameter.
+    * Should be able to determine which message to update using an `id` url parameter.
+  * Delete - Should be able to delete a message using an `id` url parameter.
 * All methods should send a response of the updated messages array.
 
 <details>
@@ -198,7 +198,7 @@ read: ( req, res ) => {
 }
 ```
 
-The `update` method should update the `text` property of a message using the `text` value from the request body. It should also determine which message to update based on the value of `id` from the request query parameters. We can use `.findIndex` to get the index where the `id`s match. We can then get the object using the index and update the object. Then we can return the updated `messages` array.
+The `update` method should update the `text` property of a message using the `text` value from the request body. It should also determine which message to update based on the value of `id` from the request url parameters. We can use `.findIndex` to get the index where the `id`s match. We can then get the object using the index and update the object. Then we can return the updated `messages` array.
 
 ```js
 update: ( req, res ) => {
@@ -217,7 +217,7 @@ update: ( req, res ) => {
 }
 ```
 
-The `delete` method should delete a message using the value of `id` from the request query parameters. We can use `.findIndex` again with the `id` to get the `index` of the message object and then use `.splice` to remove it from the `messages` array. We'll then want to send the updated `messages` array.
+The `delete` method should delete a message using the value of `id` from the request url parameters. We can use `.findIndex` again with the `id` to get the `index` of the message object and then use `.splice` to remove it from the `messages` array. We'll then want to send the updated `messages` array.
 
 ```js
 delete: ( req, res ) => {
@@ -292,7 +292,7 @@ In this step, we will hook up our controller to our app in `server/index.js`.
 * Require the messages controller.
 * Create a `post`, `get`, `put`, and `delete` endpoint that use the corressponding method on the messages controller.
 * The url for this api should be `/api/messages`.
-  * Remember to add on a query parameter of `id` for the methods that are using it.
+  * Remember to add on a url parameter of `id` for the methods that are using it.
 
 <details>
 
@@ -316,7 +316,7 @@ app.put( messagesBaseUrl, mc.update );
 app.delete( messagesBaseUrl, mc.delete );
 ```
 
-For the `put` and `delete` endpoints we need to add on a query parameter of `id`. A query paramter can be defined by doing `:variableName`.
+For the `put` and `delete` endpoints we need to add on a url parameter of `id`. A url paramter can be defined by adding `:variableName` when making the URL for an endpoint.
 
 ```js
 const messagesBaseUrl = "/api/messages";
