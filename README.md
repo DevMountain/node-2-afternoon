@@ -300,13 +300,13 @@ In this step, we will hook up our controller to our app in `server/index.js`.
 
 <br />
 
-Let's being by opening `server/index.js`. Since we used `module.exports` in our `server/controllers/messages_controller.js` we can require it in our `index.js`. The entire `index.js` will have access to all the methods we put on the object ( `create`, `read`, `update`, and `delete` ).
+Let's begin by opening `server/index.js`. Since we used `module.exports` in our `server/controllers/messages_controller.js` we can require it in our `index.js`. The entire `index.js` will have access to all the methods we put on the object ( `create`, `read`, `update`, and `delete` ).
 
 ```js
 const mc = require( __dirname + '/controllers/messages_controller');
 ```
 
-We can then use the built-in methods `express` gives us to create endpoints. We'll use `post` for `create`, `get` for `read`, `put` for `update`, and `delete` for `delete`. We'll also make a `messagesBaseUrl` variable so that if the URL ever changes we won't have to update in four different places. The `messagesBaseUrl` should equal `/api/messages`.
+We can then use the built-in methods `express` gives us to create endpoints. We'll use `post` for `create`; `get` for `read`; `put` for `update`; and `delete` for `delete`. We'll also make a `messagesBaseUrl` variable so that if the URL ever changes we won't have to update in four different places. The `messagesBaseUrl` should equal `/api/messages`.
 
 ```js
 const messagesBaseUrl = "/api/messages";
@@ -316,7 +316,7 @@ app.put( messagesBaseUrl, mc.update );
 app.delete( messagesBaseUrl, mc.delete );
 ```
 
-For the `put` and `delete` endpoints we need to add on a url parameter of `id`. A url paramter can be defined by adding `:variableName` when making the URL for an endpoint.
+For the `put` and `delete` endpoints, we need to add on a url parameter of `id`. A url paramter can be defined by adding `:variableName` when making the URL for an endpoint.
 
 ```js
 const messagesBaseUrl = "/api/messages";
