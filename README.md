@@ -381,7 +381,7 @@ In this step, we will test the API endpoints using postman unit tests.
 
 <img src="https://github.com/DevMountain/node-chat/blob/solution/readme-assets/2.png" />
 
-## Step 8
+## Step 7
 
 ### Summary
 
