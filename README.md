@@ -54,7 +54,7 @@ node_modules
 
 </details>
 
-## Step 4
+## Step 3
 
 ### Summary
 
@@ -121,7 +121,7 @@ app.listen( port, () => { console.log(`Server listening on port ${port}.`); } );
 
 </details>
 
-## Step 5
+## Step 4
 
 ### Summary
 
@@ -280,7 +280,7 @@ module.exports = {
 
 </details>
 
-## Step 6
+## Step 5
 
 ### Summary
 
@@ -362,7 +362,7 @@ app.listen( port, () => { console.log(`Server listening on port ${port}.`); } );
 
 </details>
 
-## Step 7
+## Step 6
 
 ### Summary
 
