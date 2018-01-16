@@ -6,6 +6,11 @@ In this project, we will create a local node chat server. After building out the
 
 <img src="https://github.com/DevMountain/node-chat/blob/solution/readme-assets/1.png" />
 
+## Setup
+
+* `Fork` this repository.
+* `Clone` your `fork`.
+
 ## Step 1
 
 ### Summary
