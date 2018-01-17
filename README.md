@@ -4,7 +4,7 @@
 
 In this project, we will create a local node chat server. After building out the server, we'll use postman unit tests to make sure the API has been built out correctly and also use a pre-built front-end to interact with the API.
 
-<img src="https://github.com/DevMountain/node-chat/blob/solution/readme-assets/1.png" />
+<img src="https://github.com/DevMountain/node-1-afternoon/blob/solution/readme-assets/1.png" />
 
 ## Setup
 
@@ -34,7 +34,7 @@ Using `npm` we can quickly create a `package.json` file. In your terminal, when 
 
 ### Solution
 
-<img src="https://github.com/DevMountain/node-chat/blob/solution/readme-assets/1g.gif" />
+<img src="https://github.com/DevMountain/node-1-afternoon/blob/solution/readme-assets/1g.gif" />
 
 ## Step 2
 
@@ -384,7 +384,7 @@ In this step, we will test the API endpoints using postman unit tests.
 
 ### Solution
 
-<img src="https://github.com/DevMountain/node-chat/blob/solution/readme-assets/2.png" />
+<img src="https://github.com/DevMountain/node-1-afternoon/blob/solution/readme-assets/2.png" />
 
 ## Step 7
 
@@ -429,7 +429,7 @@ app.listen( port, () => { console.log(`Server listening on port ${port}.`); } );
 
 <br />
 
-<img src="https://github.com/DevMountain/node-chat/blob/solution/readme-assets/2g.gif" />
+<img src="https://github.com/DevMountain/node-1-afternoon/blob/solution/readme-assets/2g.gif" />
 
 ## Black Diamond
 
