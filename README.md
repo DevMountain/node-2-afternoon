@@ -4,6 +4,10 @@
 
 In this project, we will create a local node chat server. After building out the server, we'll use postman unit tests to make sure the API has been built out correctly and also use a pre-built front-end to interact with the API.
 
+# Live Example
+
+<a href="http://104.131.99.159:10007/">Click Me!</a>
+
 <img src="https://github.com/DevMountain/node-1-afternoon/blob/solution/readme-assets/1.png" />
 
 ## Setup
