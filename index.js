@@ -19,5 +19,5 @@ app.get( '*', ( req, res, next ) => {
   res.sendFile( Path.resolve( __dirname + '/public/build/index.html' ) );
 });
 
-const port = 10005;
+const port = 10007;
 app.listen( port, () => { console.log(`Server listening on port ${port}.`); } );
