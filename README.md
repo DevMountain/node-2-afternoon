@@ -75,7 +75,7 @@ In this step, we will create our `index.js` file.
 * Require `express` and `body-parser`.
 * Create an express app.
 * Configure the app to parse JSON from the body.
-* Configure the app to listen on port 3000 and display a message when it is listening.
+* Configure the app to listen on port 3001 and display a message when it is listening.
 
 <details>
 
@@ -92,7 +92,7 @@ const bodyParser = require('body-parser');
 const app = express();
 ```
 
-We now have a full express application stored in `app`. If you were to console log app you would see it's a large object with many methods we can make use of. One of them we'll use is called `listen`. This will allow us to say what port the server should listen on. Let's have our server listen on port `3000`.
+We now have a full express application stored in `app`. If you were to console log app you would see it's a large object with many methods we can make use of. One of them we'll use is called `listen`. This will allow us to say what port the server should listen on. Let's have our server listen on port `3001`.
 
 ```js
 const express = require('express');
@@ -100,13 +100,13 @@ const bodyParser = require('body-parser');
 
 const app = express();
 
-const port = 3000;
+const port = 3001;
 app.listen( port, () => { console.log(`Server listening on port ${port}`); } );
 ```
 
 Why did you use a port variable? This variable is not required. However, say for some reason you needed to change the port, you now only have to change it in one place instead of two. 
 
-We now have an express server listening for requests on port 3000 and when we start up the server we'll see the console log of `Server listening on port 3000`.
+We now have an express server listening for requests on port 3001 and when we start up the server we'll see the console log of `Server listening on port 3001`.
 
 </details>
 
@@ -124,7 +124,7 @@ const app = express();
 
 app.use( bodyParser.json() );
 
-const port = 3000;
+const port = 3001;
 app.listen( port, () => { console.log(`Server listening on port ${port}.`); } );
 ```
 
@@ -335,12 +335,12 @@ app.put( `${messagesBaseUrl}/:id`, mc.update );
 app.delete( `${messagesBaseUrl}/:id`, mc.delete );
 ```
 
-Now when a `get` request is sent to `http://localhost:3000` our `read` function will be executed in our `messages_controller`. Which will then send a response of the messages array. Here is a map of what happens when certain requests come through:
+Now when a `get` request is sent to `http://localhost:3001` our `read` function will be executed in our `messages_controller`. Which will then send a response of the messages array. Here is a map of what happens when certain requests come through:
 
-* http://localhost:3000 ( POST ) - `create` from `messages_controller` executes - responds with `messages` array.
-* http://localhost:3000 ( GET ) - `read` from `messages_controller` executes - responds with `messages` array.
-* http://localhost:3000 ( PUT ) - `update` from `messages_controller` executes - responds with `messages` array.
-* http://localhost:3000 ( DELETE ) - `delete` from `messages_controller` executes - responds with `messages` array.
+* http://localhost:3001 ( POST ) - `create` from `messages_controller` executes - responds with `messages` array.
+* http://localhost:3001 ( GET ) - `read` from `messages_controller` executes - responds with `messages` array.
+* http://localhost:3001 ( PUT ) - `update` from `messages_controller` executes - responds with `messages` array.
+* http://localhost:3001 ( DELETE ) - `delete` from `messages_controller` executes - responds with `messages` array.
 
 </details>
 
@@ -365,7 +365,7 @@ app.get( messagesBaseUrl, mc.read );
 app.put( `${messagesBaseUrl}/:id`, mc.update );
 app.delete( `${messagesBaseUrl}/:id`, mc.delete );
 
-const port = 3000;
+const port = 3001;
 app.listen( port, () => { console.log(`Server listening on port ${port}.`); } );
 ```
 
@@ -401,7 +401,7 @@ In this step, we will setup the API to serve our front-end files.
 * Open `server/index.js`.
 * Use `express.static` to serve the `public/build` folder.
   * Restart the API or Start the API.
-* Open `http://localhost:3000/` to see the front-end interact with the API.
+* Open `http://localhost:3001/` to see the front-end interact with the API.
 
 ### Solution
 
@@ -425,7 +425,7 @@ app.get( baseURL, mc.read );
 app.put( `${baseURL}/:id`, mc.update );
 app.delete( `${baseURL}/:id`, mc.delete );
 
-const port = 3000;
+const port = 3001;
 app.listen( port, () => { console.log(`Server listening on port ${port}.`); } );
 ```
 
