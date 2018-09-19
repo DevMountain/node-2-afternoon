@@ -188,7 +188,7 @@ module.exports = {
 }
 ```
 
-The `create` method should create a new message object using `text` and `time` from the request body and also the global `id` variable. It should then push this new messsage object into the `messages` array. After a new message object is created, `id` should be incremented by one so that the previous `id` won't be used on any other future messages. This will effectively keep the `id` unique for every message. We'll then want to send the updated `messages` array.
+The `create` method should create a new message object using `text` and `time` from the request body and also the global `id` variable. It should then push this new message object into the `messages` array. After a new message object is created, `id` should be incremented by one so that the previous `id` won't be used on any other future messages. This will effectively keep the `id` unique for every message. We'll then want to send the updated `messages` array.
 
 ```js
 create: ( req, res ) => {
@@ -299,7 +299,7 @@ In this step, we will hook up our controller to our app in `server/index.js`.
 
 * Open `server/index.js`.
 * Require the messages controller.
-* Create a `post`, `get`, `put`, and `delete` endpoint that use the corressponding method on the messages controller.
+* Create a `post`, `get`, `put`, and `delete` endpoint that use the corresponding method on the messages controller.
 * The url for this api should be `/api/messages`.
   * Remember to add on a url parameter of `id` for the methods that are using it.
 * When you are finished, run `npm start` to interact with your server through a prebuilt React app.
@@ -326,7 +326,7 @@ app.put( messagesBaseUrl, mc.update );
 app.delete( messagesBaseUrl, mc.delete );
 ```
 
-For the `put` and `delete` endpoints, we need to add on a url parameter of `id`. A url paramter can be defined by adding `:variableName` when making the URL for an endpoint.
+For the `put` and `delete` endpoints, we need to add on a url parameter of `id`. A url parameter can be defined by adding `:variableName` when making the URL for an endpoint.
 
 ```js
 const messagesBaseUrl = "/api/messages";
@@ -385,7 +385,7 @@ In this step, we will test the API endpoints using postman unit tests.
 * Open postman.
 * Import the `postman_collection` into postman.
 * Run the collection's tests.
-  * If all tests do not pass, revist previous steps.
+  * If all tests do not pass, revisit previous steps.
   * **TESTS WILL ONLY PASS IF THE 'MESSAGES' ARRAY IS EMPTY WHEN THE POSTMAN COLLECTION STARTS** Restart your server (the command is 'rs') to reset your array to empty.
 
 ### Solution
