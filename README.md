@@ -104,7 +104,7 @@ const port = 3001;
 app.listen( port, () => { console.log(`Server listening on port ${port}`); } );
 ```
 
-Why did you use a port variable? This variable is not required. However, say for some reason you needed to change the port, you now only have to change it in one place instead of two. 
+Why did you use a port variable? This variable is not required. However, say for some reason you needed to change the port, you now only have to change it in one place instead of two.
 
 We now have an express server listening for requests on port 3001 and when we start up the server we'll see the console log of `Server listening on port 3001`.
 
@@ -134,7 +134,7 @@ app.listen( port, () => { console.log(`Server listening on port ${port}.`); } );
 
 ### Summary
 
-In this step, we will create a controller that will handle the logic to create, read, update, and delete messages. A message will be an object with an `id`, `text`, and `time` property. 
+In this step, we will create a controller that will handle the logic to create, read, update, and delete messages. A message will be an object with an `id`, `text`, and `time` property.
 
 ### Instructions
 
@@ -230,7 +230,7 @@ The `delete` method should delete a message using the value of `id` from the req
 
 ```js
 delete: ( req, res ) => {
-  const deleteID = req.params.id;    
+  const deleteID = req.params.id;
   messageIndex = messages.findIndex( message => message.id == deleteID );
   messages.splice(messageIndex, 1);
   res.status(200).send( messages );
@@ -279,7 +279,7 @@ module.exports = {
   },
 
   delete: ( req, res ) => {
-    const deleteID = req.params.id;    
+    const deleteID = req.params.id;
     messageIndex = messages.findIndex( message => message.id == deleteID );
     messages.splice(messageIndex, 1);
     res.status(200).send( messages );
@@ -302,6 +302,7 @@ In this step, we will hook up our controller to our app in `server/index.js`.
 * Create a `post`, `get`, `put`, and `delete` endpoint that use the corressponding method on the messages controller.
 * The url for this api should be `/api/messages`.
   * Remember to add on a url parameter of `id` for the methods that are using it.
+* When you are finished, run `npm start` to interact with your server through a prebuilt React app.
 
 <details>
 
@@ -312,7 +313,7 @@ In this step, we will hook up our controller to our app in `server/index.js`.
 Let's begin by opening `server/index.js`. Since we used `module.exports` in our `server/controllers/messages_controller.js` we can require it in our `index.js`. The entire `index.js` will have access to all the methods we put on the object ( `create`, `read`, `update`, and `delete` ).
 
 ```js
-const mc = require( __dirname + '/controllers/messages_controller');
+const mc = require('./controllers/messages_controller');
 ```
 
 We can then use the built-in methods `express` gives us to create endpoints. We'll use `post` for `create`; `get` for `read`; `put` for `update`; and `delete` for `delete`. We'll also make a `messagesBaseUrl` variable so that if the URL ever changes we won't have to update in four different places. The `messagesBaseUrl` should equal `/api/messages`.
@@ -353,7 +354,7 @@ Now when a `get` request is sent to `http://localhost:3001` our `read` function 
 ```js
 const express = require('express');
 const bodyParser = require('body-parser');
-const mc = require( __dirname + '/controllers/messages_controller');
+const mc = require('./controllers/messages_controller');
 
 const app = express();
 
@@ -369,6 +370,7 @@ const port = 3001;
 app.listen( port, () => { console.log(`Server listening on port ${port}.`); } );
 ```
 
+<img src="https://github.com/DevMountain/node-1-afternoon/blob/solution/readme-assets/2g.gif" />
 </details>
 
 ## Step 6
@@ -384,63 +386,11 @@ In this step, we will test the API endpoints using postman unit tests.
 * Import the `postman_collection` into postman.
 * Run the collection's tests.
   * If all tests do not pass, revist previous steps.
-  * **TESTS WILL ONLY PASS IF THE 'MESSAGES' ARRAY IS EMPTY WHEN THE POSTMAN COLLECTION STARTS** Restart your server (the command is 'rs') to reset your array to empty. 
+  * **TESTS WILL ONLY PASS IF THE 'MESSAGES' ARRAY IS EMPTY WHEN THE POSTMAN COLLECTION STARTS** Restart your server (the command is 'rs') to reset your array to empty.
 
 ### Solution
 
 <img src="https://github.com/DevMountain/node-1-afternoon/blob/solution/readme-assets/2.png" />
-
-## Step 7
-
-### Summary
-
-In this step, we will setup the API to serve our front-end files.
-
-### Instructions
-
-* Open `server/index.js`.
-* Use `express.static` to serve the `public/build` folder.
-  * Restart the API or Start the API.
-* Open `http://localhost:3001/` to see the front-end interact with the API.
-
-### Solution
-
-<details>
-
-<summary> <code> server/index.js </code> </summary>
-
-```js
-const express = require('express');
-const bodyParser = require('body-parser');
-const mc = require( __dirname + '/controllers/messages_controller');
-
-const app = express();
-
-app.use( bodyParser.json() );
-app.use( express.static( __dirname + '/../public/build' ) );
-
-const baseURL = "/api/messages";
-app.post( baseURL, mc.create );
-app.get( baseURL, mc.read );
-app.put( `${baseURL}/:id`, mc.update );
-app.delete( `${baseURL}/:id`, mc.delete );
-
-const port = 3001;
-app.listen( port, () => { console.log(`Server listening on port ${port}.`); } );
-```
-
-</details>
-
-<br />
-
-<img src="https://github.com/DevMountain/node-1-afternoon/blob/solution/readme-assets/2g.gif" />
-
-## Black Diamond
-
-* Modify the chat api to include a display name for each message.
-* Host the chat api.
-* Modify the `create-react-app` front-end to hit the hosted chat api instead.
-* See if you can chat with your classmates.
 
 ## Contributions
 
