@@ -312,7 +312,7 @@ In this step, we will hook up our controller to our app in `server/index.js`.
 Let's begin by opening `server/index.js`. Since we used `module.exports` in our `server/controllers/messages_controller.js` we can require it in our `index.js`. The entire `index.js` will have access to all the methods we put on the object ( `create`, `read`, `update`, and `delete` ).
 
 ```js
-const mc = require( __dirname + '/controllers/messages_controller');
+const mc = require('./controllers/messages_controller');
 ```
 
 We can then use the built-in methods `express` gives us to create endpoints. We'll use `post` for `create`; `get` for `read`; `put` for `update`; and `delete` for `delete`. We'll also make a `messagesBaseUrl` variable so that if the URL ever changes we won't have to update in four different places. The `messagesBaseUrl` should equal `/api/messages`.
@@ -353,7 +353,7 @@ Now when a `get` request is sent to `http://localhost:3001` our `read` function 
 ```js
 const express = require('express');
 const bodyParser = require('body-parser');
-const mc = require( __dirname + '/controllers/messages_controller');
+const mc = require('./controllers/messages_controller');
 
 const app = express();
 
@@ -412,7 +412,7 @@ In this step, we will setup the API to serve our front-end files.
 ```js
 const express = require('express');
 const bodyParser = require('body-parser');
-const mc = require( __dirname + '/controllers/messages_controller');
+const mc = require('./controllers/messages_controller');
 
 const app = express();
 
