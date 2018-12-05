@@ -92,13 +92,15 @@ const bodyParser = require('body-parser');
 const app = express();
 ```
 
-We now have a full express application stored in `app`. If you were to console log app you would see it's a large object with many methods we can make use of. One of them we'll use is called `listen`. This will allow us to say what port the server should listen on. Let's have our server listen on port `3001`.
+We now have a full express application stored in `app`. If you were to console log app you would see it's a large object with many methods we can make use of. One of them we'll use is called `listen`. This will allow us to say what port the server should listen on. Let's have our server listen on port `3001`. We also need to set up our body parser so that we have access to req.body in our endpoints. set up an `app.use(bodyParser.json())`
 
 ```js
 const express = require('express');
 const bodyParser = require('body-parser');
 
 const app = express();
+
+app.use( bodyParser.json() );
 
 const port = 3001;
 app.listen( port, () => { console.log(`Server listening on port ${port}`); } );
