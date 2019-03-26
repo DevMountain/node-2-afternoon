@@ -24,7 +24,7 @@ In this step, we will create a `package.json` and install our dependencies.
 ### Instructions
 
 * In the root of the project, create a `package.json` file.
-* Using npm, install and save `express` and `body-parser` to the `package.json`.
+* Using npm, install and save `express` to the `package.json`.
 
 <details>
 
@@ -32,7 +32,7 @@ In this step, we will create a `package.json` and install our dependencies.
 
 <br />
 
-Using `npm` we can quickly create a `package.json` file. In your terminal, when in the root of the project, run `npm init -y`. The `-y` flag will create a `package.json` file with all the default values. It's that simple. Now we can use `npm` to install packages and save them to the `package.json` file using the `--save` flag. Run `npm install --save express body-parser` to install and save both packages.
+Using `npm` we can quickly create a `package.json` file. In your terminal, when in the root of the project, run `npm init -y`. The `-y` flag will create a `package.json` file with all the default values. It's that simple. Now we can use `npm` to install packages and save them to the `package.json` file. Run `npm install express` to install and save the express package.
 
 </details>
 
@@ -72,7 +72,7 @@ In this step, we will create our `index.js` file.
 ### Instructions
 
 * Open `server/index.js`.
-* Require `express` and `body-parser`.
+* Require `express`.
 * Create an express app.
 * Configure the app to parse JSON from the body.
 * Configure the app to listen on port 3001 and display a message when it is listening.
@@ -83,27 +83,27 @@ In this step, we will create our `index.js` file.
 
 <br />
 
-To begin let's open `server/index.js` and require the packages our server will need. Express is a minimalist web framework for Node that will allow us to spin up a server in no-time. We can create an express application by requiring it and saving `express()` to a variable. Let's create a variable called `app` that equals `express()`.
+To begin let's open `server/index.js` and require the package our server will need. Express is a minimalist web framework for Node that will allow us to spin up a server in no-time. We can create an express application by requiring it and saving `express()` to a variable. Let's create a variable called `app` that equals `express()`.
 
 ```js
 const express = require('express');
-const bodyParser = require('body-parser');
 
 const app = express();
 ```
 
-We now have a full express application stored in `app`. If you were to console log app you would see it's a large object with many methods we can make use of. One of them we'll use is called `listen`. This will allow us to say what port the server should listen on. Let's have our server listen on port `3001`. We also need to set up our body parser so that we have access to req.body in our endpoints. set up an `app.use(bodyParser.json())`
+We also need to set up a body parser so that we have access to `req.body` in our endpoints. The express package we imported has a method on it called `.json` to do this. Set up an `app.use(express.json())`
 
 ```js
-const express = require('express');
-const bodyParser = require('body-parser');
+app.use(express.json());
+```
 
-const app = express();
+We now have a full express application stored in `app`. If you were to console log app you would see it's a large object with many methods we can make use of. One of them we'll use is called `listen`. This will allow us to say what port the server should listen on. Let's have our server listen on port `3001`. 
 
-app.use( bodyParser.json() );
-
+```js
 const port = 3001;
-app.listen( port, () => { console.log(`Server listening on port ${port}`); } );
+app.listen(port, () => {
+  console.log(`Server listening on port ${port}`);
+});
 ```
 
 Why did you use a port variable? This variable is not required. However, say for some reason you needed to change the port, you now only have to change it in one place instead of two. 
@@ -119,15 +119,16 @@ We now have an express server listening for requests on port 3001 and when we st
 <summary> <code> server/index.js </code> </summary>
 
 ```js
-const express = require('express');
-const bodyParser = require('body-parser');
+const express = require("express");
 
 const app = express();
 
-app.use( bodyParser.json() );
+app.use(express.json());
 
 const port = 3001;
-app.listen( port, () => { console.log(`Server listening on port ${port}.`); } );
+app.listen(port, () => {
+  console.log(`Server listening on port ${port}`);
+});
 ```
 
 </details>
@@ -175,16 +176,16 @@ let messages = [];
 let id = 0;
 
 module.exports = {
-  create: ( req, res ) => {
+  create: (req, res) => {
 
   },
-  read: ( req, res ) => {
+  read: (req, res) => {
 
   },
-  update: ( req, res ) => {
+  update: (req, res) => {
 
   },
-  delete: ( req, res ) => {
+  delete: (req, res) => {
 
   }
 }
@@ -193,53 +194,53 @@ module.exports = {
 The `create` method should create a new message object using `text` and `time` from the request body and also the global `id` variable. It should then push this new messsage object into the `messages` array. After a new message object is created, `id` should be incremented by one so that the previous `id` won't be used on any other future messages. This will effectively keep the `id` unique for every message. We'll then want to send the updated `messages` array.
 
 ```js
-create: ( req, res ) => {
+create: (req, res) => {
   const { text, time } = req.body;
   messages.push({ id, text, time });
   id++;
-  res.status(200).send( messages );
+  res.status(200).send(messages);
 }
 ```
 
 The `read` method should return the entire messages array.
 
 ```js
-read: ( req, res ) => {
-  res.status(200).send( messages );
+read: (req, res) => {
+  res.status(200).send(messages);
 }
 ```
 
-The `update` method should update the `text` property of a message using the `text` value from the request body. It should also determine which message to update based on the value of `id` from the request url parameters. We can use `.findIndex` to get the index where the `id`s match. We can then get the object using the index and update the object. Then we can return the updated `messages` array.
+The `update` method should update the `text` property of a message using the `text` value from the request body. It should also determine which message to update based on the value of `id` from the request url parameters. We can use `.findIndex` to get the index where the `id`s match. We'll want to use double equals `==` to find the `id` instead of triple equals `===` in this case because the `id` in the message objects are numbers, and the `id` from the `req.params` is a string. We can then get the object using the index and update the object. Then we can return the updated `messages` array.
 
 ```js
-update: ( req, res ) => {
+update: (req, res) => {
   const { text } = req.body;
   const updateID = req.params.id;
-  const messageIndex = messages.findIndex( message => message.id == updateID );
-  let message = messages[ messageIndex ];
+  const messageIndex = messages.findIndex(message => message.id == updateID);
+  let message = messages[messageIndex];
 
-  messages[ messageIndex ] = {
+  messages[messageIndex] = {
     id: message.id,
     text: text || message.text,
     time: message.time
   };
 
-  res.status(200).send( messages );
+  res.status(200).send(messages);
 }
 ```
 
 The `delete` method should delete a message using the value of `id` from the request url parameters. We can use `.findIndex` again with the `id` to get the `index` of the message object and then use `.splice` to remove it from the `messages` array. We'll then want to send the updated `messages` array.
 
 ```js
-delete: ( req, res ) => {
+delete: (req, res) => {
   const deleteID = req.params.id;    
-  messageIndex = messages.findIndex( message => message.id == deleteID );
+  messageIndex = messages.findIndex(message => message.id == deleteID);
   messages.splice(messageIndex, 1);
-  res.status(200).send( messages );
+  res.status(200).send(messages);
 }
 ```
 
-We now have all the logic we need to `create`, `read`, `update`, and `delete` messages. Now we can import our controller into `index.js` and create routes that will execute the logic.
+We now have all the logic we need to `create`, `read`, `update`, and `delete` messages. Now we can import our controller into `index.js` and create endpoints that will execute the logic.
 
 </details>
 
@@ -254,37 +255,37 @@ let messages = [];
 let id = 0;
 
 module.exports = {
-  create: ( req, res ) => {
+  create: (req, res) => {
     const { text, time } = req.body;
     messages.push({ id, text, time });
     id++;
-    res.status(200).send( messages );
+    res.status(200).send(messages);
   },
 
-  read: ( req, res ) => {
-    res.status(200).send( messages );
+  read: (req, res) => {
+    res.status(200).send(messages);
   },
 
-  update: ( req, res ) => {
+  update: (req, res) => {
     const { text } = req.body;
     const updateID = req.params.id;
-    const messageIndex = messages.findIndex( message => message.id == updateID );
-    let message = messages[ messageIndex ];
+    const messageIndex = messages.findIndex(message => message.id == updateID);
+    let message = messages[messageIndex];
 
-    messages[ messageIndex ] = {
+    messages[messageIndex] = {
       id: message.id,
       text: text || message.text,
       time: message.time
     };
 
-    res.status(200).send( messages );
+    res.status(200).send(messages);
   },
 
-  delete: ( req, res ) => {
-    const deleteID = req.params.id;    
-    messageIndex = messages.findIndex( message => message.id == deleteID );
+  delete: (req, res) => {
+    const deleteID = req.params.id;
+    messageIndex = messages.findIndex(message => message.id == deleteID);
     messages.splice(messageIndex, 1);
-    res.status(200).send( messages );
+    res.status(200).send(messages);
   }
 };
 ```
@@ -321,28 +322,28 @@ We can then use the built-in methods `express` gives us to create endpoints. We'
 
 ```js
 const messagesBaseUrl = "/api/messages";
-app.post( messagesBaseUrl, mc.create );
-app.get( messagesBaseUrl, mc.read );
-app.put( messagesBaseUrl, mc.update );
-app.delete( messagesBaseUrl, mc.delete );
+app.post(messagesBaseUrl, mc.create);
+app.get(messagesBaseUrl, mc.read);
+app.put(messagesBaseUrl, mc.update);
+app.delete(messagesBaseUrl, mc.delete);
 ```
 
 For the `put` and `delete` endpoints, we need to add on a url parameter of `id`. A url paramter can be defined by adding `:variableName` when making the URL for an endpoint.
 
 ```js
 const messagesBaseUrl = "/api/messages";
-app.post( messagesBaseUrl, mc.create );
-app.get( messagesBaseUrl, mc.read );
-app.put( `${messagesBaseUrl}/:id`, mc.update );
-app.delete( `${messagesBaseUrl}/:id`, mc.delete );
+app.post(messagesBaseUrl, mc.create);
+app.get(messagesBaseUrl, mc.read);
+app.put(`${messagesBaseUrl}/:id`, mc.update);
+app.delete(`${messagesBaseUrl}/:id`, mc.delete);
 ```
 
-Now when a `get` request is sent to `http://localhost:3001` our `read` function will be executed in our `messages_controller`. Which will then send a response of the messages array. Here is a map of what happens when certain requests come through:
+Now when a `get` request is sent to `http://localhost:3001/api/messages` our `read` function will be executed in our `messages_controller`. Which will then send a response of the messages array. Here is a map of what happens when certain requests come through:
 
-* http://localhost:3001 ( POST ) - `create` from `messages_controller` executes - responds with `messages` array.
-* http://localhost:3001 ( GET ) - `read` from `messages_controller` executes - responds with `messages` array.
-* http://localhost:3001 ( PUT ) - `update` from `messages_controller` executes - responds with `messages` array.
-* http://localhost:3001 ( DELETE ) - `delete` from `messages_controller` executes - responds with `messages` array.
+* http://localhost:3001/api/messages ( POST ) - `create` from `messages_controller` executes - responds with `messages` array.
+* http://localhost:3001/api/messages ( GET ) - `read` from `messages_controller` executes - responds with `messages` array.
+* http://localhost:3001/api/messages ( PUT ) - `update` from `messages_controller` executes - responds with `messages` array.
+* http://localhost:3001/api/messages ( DELETE ) - `delete` from `messages_controller` executes - responds with `messages` array.
 
 </details>
 
@@ -353,22 +354,23 @@ Now when a `get` request is sent to `http://localhost:3001` our `read` function 
 <summary> <code> server/index.js </code> </summary>
 
 ```js
-const express = require('express');
-const bodyParser = require('body-parser');
-const mc = require('./controllers/messages_controller');
+const express = require("express");
+const mc = require("./controllers/messages_controller");
 
 const app = express();
 
-app.use( bodyParser.json() );
+app.use(express.json());
 
 const messagesBaseUrl = "/api/messages";
-app.post( messagesBaseUrl, mc.create );
-app.get( messagesBaseUrl, mc.read );
-app.put( `${messagesBaseUrl}/:id`, mc.update );
-app.delete( `${messagesBaseUrl}/:id`, mc.delete );
+app.post(messagesBaseUrl, mc.create);
+app.get(messagesBaseUrl, mc.read);
+app.put(`${messagesBaseUrl}/:id`, mc.update);
+app.delete(`${messagesBaseUrl}/:id`, mc.delete);
 
 const port = 3001;
-app.listen( port, () => { console.log(`Server listening on port ${port}.`); } );
+app.listen(port, () => {
+  console.log(`Server listening on port ${port}`);
+});
 ```
 
 </details>
@@ -377,16 +379,16 @@ app.listen( port, () => { console.log(`Server listening on port ${port}.`); } );
 
 ### Summary
 
-In this step, we will test the API endpoints using postman unit tests.
+In this step, we will test the API endpoints using `Postman` unit tests.
 
 ### Instructions
 
 * Startup the API and make sure it doesn't crash.
-* Open postman.
-* Import the `postman_collection` into postman.
+* Open `Postman`.
+* Import the `postman_collection` into `Postman`.
 * Run the collection's tests.
   * If all tests do not pass, revist previous steps.
-  * **TESTS WILL ONLY PASS IF THE 'MESSAGES' ARRAY IS EMPTY WHEN THE POSTMAN COLLECTION STARTS** Restart your server (the command is 'rs') to reset your array to empty. 
+  * **TESTS WILL ONLY PASS IF THE 'MESSAGES' ARRAY IS EMPTY WHEN THE POSTMAN COLLECTION STARTS** Restart your server (the command is 'rs') to reset your array to empty before running the tests. 
 
 ### Solution
 
@@ -412,23 +414,24 @@ In this step, we will setup the API to serve our front-end files.
 <summary> <code> server/index.js </code> </summary>
 
 ```js
-const express = require('express');
-const bodyParser = require('body-parser');
-const mc = require('./controllers/messages_controller');
+const express = require("express");
+const mc = require("./controllers/messages_controller");
 
 const app = express();
 
-app.use( bodyParser.json() );
-app.use( express.static( __dirname + '/../public/build' ) );
+app.use(express.json());
+app.use(express.static(__dirname + '/../public/build'));
 
-const  messagesBaseUrl = "/api/messages";
-app.post(  messagesBaseUrl, mc.create );
-app.get(  messagesBaseUrl, mc.read );
-app.put( `${ messagesBaseUrl}/:id`, mc.update );
-app.delete( `${ messagesBaseUrl}/:id`, mc.delete );
+const messagesBaseUrl = "/api/messages";
+app.post(messagesBaseUrl, mc.create);
+app.get(messagesBaseUrl, mc.read);
+app.put(`${messagesBaseUrl}/:id`, mc.update);
+app.delete(`${messagesBaseUrl}/:id`, mc.delete);
 
 const port = 3001;
-app.listen( port, () => { console.log(`Server listening on port ${port}.`); } );
+app.listen(port, () => {
+  console.log(`Server listening on port ${port}`);
+});
 ```
 
 </details>
