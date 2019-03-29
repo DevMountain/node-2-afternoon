@@ -8,7 +8,7 @@ In this project, we will create a local node chat server. After building out the
 
 <a href="http://104.131.99.159:10007/">Click Me!</a>
 
-<img src="https://github.com/DevMountain/node-1-afternoon/blob/solution/readme-assets/1.png" />
+<img src="https://github.com/DevMountain/node-2-afternoon/blob/solution/readme-assets/1.png" />
 
 ## Setup
 
@@ -38,7 +38,7 @@ Using `npm` we can quickly create a `package.json` file. In your terminal, when 
 
 ### Solution
 
-<img src="https://github.com/DevMountain/node-1-afternoon/blob/solution/readme-assets/1g.gif" />
+<img src="https://github.com/DevMountain/node-2-afternoon/blob/solution/readme-assets/1g.gif" />
 
 ## Step 2
 
@@ -392,7 +392,7 @@ In this step, we will test the API endpoints using `Postman` unit tests.
 
 ### Solution
 
-<img src="https://github.com/DevMountain/node-1-afternoon/blob/solution/readme-assets/2.png" />
+<img src="https://github.com/DevMountain/node-2-afternoon/blob/solution/readme-assets/2.png" />
 
 ## Step 7
 
@@ -438,7 +438,7 @@ app.listen(port, () => {
 
 <br />
 
-<img src="https://github.com/DevMountain/node-1-afternoon/blob/solution/readme-assets/2g.gif" />
+<img src="https://github.com/DevMountain/node-2-afternoon/blob/solution/readme-assets/2g.gif" />
 
 ## Black Diamond
 
