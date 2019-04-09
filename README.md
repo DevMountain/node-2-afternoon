@@ -447,6 +447,31 @@ app.listen(port, () => {
 * Modify the `create-react-app` front-end to hit the hosted chat api instead.
 * See if you can chat with your classmates.
 
+
+## Resources
+
+<details>
+
+<summary> <code> Express </code> </summary>
+
+* [Req.Body](https://expressjs.com/en/api.html#req.body)
+  _Note: They use body-parser to parse the body, we use express.json_
+* [Req.Query](https://expressjs.com/en/api.html#req.query)
+* [Req.Params](https://expressjs.com/en/api.html#req.params)
+* [Express.Static](https://expressjs.com/en/api.html#express.static)
+  _Note: This will generally look like express.static(__dirname, '/path/to/build/folder')_
+* [Get Request](https://expressjs.com/en/api.html#app.get)
+* [Post Request](https://expressjs.com/en/api.html#app.post.method)
+  _Note: Typically, you'll use post when you need to pass complex data (objects, arrays, etc) back to the server on the body_
+  _post requests get access to req.body because of express.json and are used for adding new data_
+* [Put Request](https://expressjs.com/en/api.html#app.put.method)
+  _Note: Typically, you'll use put when you need to pass complex data (objects, arrays, etc) back to the server on the body_
+  _put requests get access to req.body because of express.json and are used for updating existing data_
+* [Delete Request](https://expressjs.com/en/api.html#app.delete.method)
+  _Note: Typically you'll use a path parameter to target what data you'd like to delete via an ID or other unique info_
+
+</details>
+
 ## Contributions
 
 If you see a problem or a typo, please fork, make the necessary changes, and create a pull request so we can review your changes and merge them into the master repo and branch.
