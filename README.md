@@ -440,13 +440,6 @@ app.listen(port, () => {
 
 <img src="https://github.com/DevMountain/node-2-afternoon/blob/solution/readme-assets/2g.gif" />
 
-## Black Diamond
-
-* Modify the chat api to include a display name for each message.
-* Host the chat api.
-* Modify the `create-react-app` front-end to hit the hosted chat api instead.
-* See if you can chat with your classmates.
-
 
 ## Resources
 
