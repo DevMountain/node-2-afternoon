@@ -234,7 +234,7 @@ The `delete` method should delete a message using the value of `id` from the req
 ```js
 delete: (req, res) => {
   const deleteID = req.params.id;    
-  messageIndex = messages.findIndex(message => message.id == deleteID);
+  const messageIndex = messages.findIndex(message => message.id == deleteID);
   messages.splice(messageIndex, 1);
   res.status(200).send(messages);
 }
