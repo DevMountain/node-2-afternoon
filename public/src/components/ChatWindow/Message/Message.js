@@ -8,7 +8,7 @@ export default class Message extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      editting: false,
+      editing: false,
       text: this.props.text
     };
 
@@ -31,7 +31,7 @@ export default class Message extends Component {
 
   render() {
     const { id, text, time, edit, remove } = this.props;
-    const { editting } = this.state;
+    const { editing } = this.state;
     console.log( id, text );
     return (
       <div className="Message__container">
@@ -43,7 +43,7 @@ export default class Message extends Component {
           :
             <span className="Message__text">{text}</span>
         }
-        <span className="Message__edit" onClick={ () => this.setState({ editting: !this.state.editting, text }) }> <FaPencil /> </span>
+        <span className="Message__edit" onClick={ () => this.setState({ editing: !editing, text }) }> <FaPencil /> </span>
         <span className="Message__delete" onClick={ () => remove( id ) }> <FaTrash /> </span>
       </div>
     )
